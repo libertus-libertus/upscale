@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upscale.id, Scaling Up your business with right talent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="https://upscale.id/template/upscale/media/upscale.ico">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Swiper CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <style type="text/tailwindcss">
+    @layer base {
+      html {
+        font-family: 'Jost', sans-serif;
+        scroll-behavior: smooth;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: flex;
+      }
+      .video-container {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .video-container video {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .content-overlay {
+        position: relative;
+        z-index: 10;
+        height: 100%;
+      }
+      .partner-swiper .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white">
+
+  <!-- Navbar -->
+  <header>
+    <nav id="main-navbar" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300 bg-transparent">
+      <!-- <nav class="absolute top-0 left-0 w-full z-50 bg-transparent"> -->
+      <div class="container mx-auto px-4 sm:px-6 lg:px-28">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0">
+            <a href="index.html">
+              <img class="h-8" src="https://upscale.id/template/upscale/media/logo-transparent.png" alt="Upscale.id"
+              loading="lazy">
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden lg:flex items-center space-x-4">
+            <a href="index.html" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Home</a>
+            <a href="help-business.html" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Business</a>
+            <a href="help-talent.html" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Talent</a>
+            <a href="#" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Jobs</a>
+            <a href="#" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">F.A.Q</a>
+
+            <!-- Language Dropdown -->
+            <div class="relative dropdown px-3">
+              <button class="flex items-center text-sm font-medium hover:text-cyan-500 transition-colors">
+                <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-2"
+                  loading="lazy">
+                ID
+              </button>
+              <div
+                class="dropdown-menu hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10 flex-col py-1">
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700">
+                  <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-1"
+                    loading="lazy">
+                  ID
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700">
+                  <img src="https://upscale.id/template/upscale/media/en.png" alt="EN" class="w-5 h-3 mr-1"
+                    loading="lazy">
+                  EN
+                </a>
+              </div>
+              
+            </div>
+
+            <div class="h-4 border-l border-gray-600 mx-2"></div>
+
+            <!-- Auth Buttons -->
+            <button id="login-btn" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Login</button>
+            <a href="#"
+              class="border border-white text-white rounded-full px-4 py-1 hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-colors ml-2 text-sm font-medium">
+              Live Chat
+            </a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="lg:hidden">
+            <button id="mobile-menu-button" class="p-2 hover:text-cyan-500 focus:outline-none transition-colors">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu with smooth transition -->
+      <div id="mobile-menu"
+        class="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white text-black overflow-y-auto transform transition-all duration-300 translate-y-[-100%] opacity-0 pointer-events-none">
+        <div class="px-4 pt-4 pb-8 space-y-2">
+          <a href="index.html" class="block px-3 py-2 hover:text-cyan-500 transition-colors">Home</a>
+          <a href="help-business.html" class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Business</a>
+          <a href="help-talent.html" class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Talent</a>
+          <a href="#" class="block px-3 py-2 hover:text-cyan-500 transition-colors">Jobs</a>
+          <a href="#" class="block px-3 py-2 hover:text-cyan-500 transition-colors">F.A.Q</a>
+
+          <!-- Language Selection -->
+          <div class="flex items-center px-3 py-2 space-x-2">
+            <a href="https://upscale.id?lang=en" class="flex items-center hover:text-cyan-500 transition-colors">
+              <img src="https://upscale.id/template/upscale/media/en.png" alt="EN" class="w-5 h-3 mr-2" loading="lazy">
+              English
+            </a>
+            <span class="text-gray-500">/</span>
+            <a href="https://upscale.id?lang=id" class="flex items-center hover:text-cyan-500 transition-colors">
+              <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-2" loading="lazy">
+              Indonesia
+            </a>
+          </div>
+
+          <div class="border-t border-gray-300 pt-2 mt-2">
+            <button id="mobile-login-btn" class="block w-full text-left px-3 py-2 hover:text-cyan-500 transition-colors">Login</button>
+            <a href="#"
+              class="block w-full text-left px-3 py-2 mt-2 text-white bg-cyan-500 hover:bg-cyan-600 rounded transition-colors">
+              Live Chat
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-8 relative">
+      <button id="login-modal-close" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl leading-none">&times;</button>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Login Dashboard</h2>
+      <form class="space-y-5">
+        <div>
+          <label class="block text-sm text-gray-700">Email</label>
+          <input type="email" placeholder="Type your email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+        </div>
+        <div>
+          <label class="block text-sm text-gray-700">Password</label>
+          <input type="password" placeholder="Type your password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600">Belum punya akun? <a href="#" class="text-sm text-cyan-600 hover:underline"> Click</a></span>
+          <a href="#" class="text-sm text-cyan-500 hover:underline float-right mt-1">Forgot password</a> 
+        </div>
+        <div class="flex justify-between gap-4 mt-6">
+          <button type="button" class="w-1/2 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg">Reset Password</button>
+          <button type="submit" class="w-1/2 bg-cyan-500 hover:bg-cyan-600 text-white py-2 rounded-lg">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen">
+      <!-- Background Video -->
+      <video muted loop playsinline
+        class="absolute top-0 left-0 w-full h-full object-cover opacity-70 z-0"
+        poster="https://upscale.id/template/upscale/media/video-poster-2.jpg">
+        <source src="https://upscale.id/template/upscale/media/repeat-medium.mp4" type="video/mp4">
+      </video>
+
+      <!-- Overlay Gelap -->
+      <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+      <!-- Konten -->
+      <div class="relative z-20 flex items-center justify-center min-h-screen">
+        <div class="container px-6 sm:px-10 lg:px-28">
+          <div class="max-w-3xl" data-aos="fade-right" data-aos-duration="1000">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              Scaling Up Your Business
+            </h1>
+            <p class="text-xl sm:text-xl text-gray-300 mb-6">
+              Service kami cocok untuk membantu berbagai <br class="hidden sm:inline"> skala perusahaan
+            </p>
+            <ul class="list-disc list-inside text-white space-y-2">
+              <li class="text-xl">Enterprise Corporation</li>
+              <li class="text-xl">Startup Company</li>
+              <li class="text-xl">E-commerce</li>
+              <li class="text-xl">Small-business</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Talent -->
+    <section class="bg-[#F1F5F7] text-gray-500 py-20">
+      <div class="container max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-10 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+
+        <!-- Kolom 1 -->
+        <div data-aos="fade-up">
+          <p class="text-lg leading-relaxed">
+            Dapatkan akses database talent kami untuk membantu scaling up perusahaan anda dengan cara yang flexible. Hal
+            ini sangat krusial bagi bisnis yang ingin berinovasi dengan cepat dan tepat. Terlebih apabila anda memiliki
+            roadmap project yang baik dan strategi yang tepat.
+          </p>
+        </div>
+
+        <!-- Kolom 2 -->
+        <div data-aos="fade-up" data-aos-delay="100">
+          <p class="text-lg leading-relaxed">
+            Sejak tahun 2009, telah membantu banyak perusahaan untuk mewujudkan harapan dengan mencarikan talent atau
+            vendor yang tepat. Dengan database talent pool kami yang jumlahnya lebih dari 5000 talent, kami dapat membantu
+            anda mewujudkan visi anda.
+          </p>
+        </div>
+
+        <!-- Kolom 3: Galeri -->
+        <div class="grid grid-cols-2 gap-4" data-aos="fade-left" data-aos-delay="200">
+          <img src="https://upscale.id/template/upscale/media/music/image-15.jpg" alt="Gallery 1"
+            class="rounded-lg w-full h-auto object-cover shadow-md">
+          <img src="https://upscale.id/template/upscale/media/music/image-1.jpg" alt="Gallery 2"
+            class="rounded-lg w-full h-auto object-cover shadow-md">
+          <img src="https://upscale.id/template/upscale/media/music/image-3.jpg" alt="Gallery 3"
+            class="rounded-lg w-full h-auto object-cover shadow-md">
+          <img src="https://upscale.id/template/upscale/media/music/image-13.jpg" alt="Gallery 4"
+            class="rounded-lg w-full h-auto object-cover shadow-md">
+        </div>
+      </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="bg-[#37517E] pb-16 pt-10 sm:pt-14 md:pt-10">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-28">
+        <div class="swiper partner-swiper">
+          <div class="swiper-wrapper items-center">
+            <div class="swiper-slide flex justify-center">
+              <img src="src/partner/logo-1.png" alt="Koinworks" class="max-h-14 object-contain" />
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <img src="src/partner/logo-2.png" alt="Cakap" class="max-h-14 object-contain" />
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <img src="src/partner/logo-3.png" alt="Gameloft" class="max-h-14 object-contain" />
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <img src="src/partner/logo-4.png" alt="Krafthaus" class="max-h-14 object-contain" />
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <img src="src/partner/logo-5.png" alt="Crowde" class="max-h-14 object-contain" />
+            </div>
+            <div class="swiper-slide flex justify-center">
+              <img src="src/partner/logo-6.png" alt="Wakuliner" class="max-h-14 object-contain" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Case Studies / Blog Style -->
+    <section class="bg-white py-20">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-28">
+        <div class="grid md:grid-cols-3 gap-10">
+
+          <!-- Card 1 -->
+          <div class="group">
+            <div class="relative overflow-hidden rounded-lg shadow-md">
+              <img src="https://upscale.id/template/upscale/media/music/image-16.jpg" alt="Malaysia Team"
+                class="w-full h-[220px] object-cover">
+              <div class="absolute top-4 right-3 bg-[#002b5b] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                AI STARTUP COMPANY
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold mt-4">Malaysia Startup, Dedicated Team</h3>
+            <p class="text-sm text-gray-700 mt-2">
+              2020 kami membantu salah satu startup malaysia yang melayani perusahaan oil & gas untuk entry & extraction
+              data untuk AI Learning
+            </p>
+            <a href="#" class="inline-block mt-3 text-sky-600 text-sm font-semibold hover:underline">
+              Data Entry Dedicated Team &nbsp;&rarr;
+            </a>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="group">
+            <div class="relative overflow-hidden rounded-lg shadow-md">
+              <img src="https://upscale.id/template/upscale/media/photo/image-10.jpg" alt="Cakap Team"
+                class="w-full h-[220px] object-cover">
+              <div class="absolute top-4 right-3 bg-[#002b5b] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                STARTUP EDUCATION
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold mt-4">Cakap, Dedicated Office & Team</h3>
+            <p class="text-sm text-gray-700 mt-2">
+              Sejak tahun 2015 s/d 2020 membantu Cakap mendapatkan belasan programer & mengelola development office di
+              jogja.
+            </p>
+            <a href="#" class="inline-block mt-3 text-sky-600 text-sm font-semibold hover:underline">
+              Dodi Prakoso Wibowo &nbsp;&rarr;
+            </a>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="group">
+            <div class="relative overflow-hidden rounded-lg shadow-md">
+              <img src="https://upscale.id/template/upscale/media/photo/image-9.jpg" alt="Krafthaus Team"
+                class="w-full h-[220px] object-cover">
+              <div class="absolute top-4 right-3 bg-[#002b5b] text-white text-xs font-semibold px-3 py-1 rounded-full">
+                DIGITAL AGENCY
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold mt-4">Krafthaus, Corporate Management</h3>
+            <p class="text-sm text-gray-700 mt-2">
+              Sejak tahun 2012 telah dipercaya oleh perusahaan Australia sebagai Managing Director untuk mengelola cabang
+              di Indonesia
+            </p>
+            <a href="#" class="inline-block mt-3 text-sky-600 text-sm font-semibold hover:underline">
+              Arief Widyananda &nbsp;&rarr;
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Consultation Form -->
+    <section class="bg-[#f5fbff] py-20">
+      <div class="container max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
+        <h2 class="text-2xl md:text-3xl font-semibold text-[#001c3d]">
+          Simple & an affordable price plans for everyone
+        </h2>
+        <p class="text-sm text-[#5f7896] mt-2">
+          Paket harga dengan konsep yang sederhana & terjangkau untuk semua orang. Baik skala <br />
+          Coorporate, startup sampai dengan UKM
+        </p>
+
+        <!-- Form Box -->
+        <div class="mt-10 bg-white shadow-md rounded-md p-6 md:p-10 text-left flex flex-col md:flex-row gap-6">
+
+          <!-- Left Text -->
+          <div class="md:w-1/2">
+            <h3 class="text-xl font-semibold text-[#001c3d] mb-2">Ingin Konsultasi<br />Kebutuhan Anda?</h3>
+            <p class="text-sm text-gray-600 mb-4">
+              Bisnis analis kami akan membantu Anda <br />
+              dalam menentukan kualifikasi talent.
+            </p>
+            <div class="text-sm text-[#001c3d] space-y-2">
+              <div class="flex items-center gap-2">
+                <img src="https://flagcdn.com/w40/id.png" alt="Indonesia Flag" class="w-5 h-4" />
+                +62 87 888 666 531
+              </div>
+              <div class="flex items-center gap-2">
+                <img src="https://flagcdn.com/w40/au.png" alt="Australia Flag" class="w-5 h-4" />
+                +61 3 9010 6067
+              </div>
+            </div>
+          </div>
+
+          <!-- Form -->
+          <div class="md:w-1/2 space-y-4">
+            <input type="text" placeholder="Name"
+              class="w-full border border-gray-300 text-gray-600 rounded px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300" />
+            <div class="flex flex-col md:flex-row gap-4">
+              <input type="text" placeholder="Phone"
+                class="w-full border border-gray-300 text-gray-600 rounded px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300" />
+              <input type="email" placeholder="Email"
+                class="w-full border border-gray-300 text-gray-600 rounded px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300" />
+            </div>
+            <textarea rows="4" placeholder="Write something ..."
+              class="w-full border border-gray-300 text-gray-600 rounded px-4 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-300"></textarea>
+            <button class="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2 rounded-full text-sm font-semibold">
+              Send inquiry
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#37517E] py-8 md:py-8">
+      <div class="container max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-10" data-aos="fade-down" data-aos-duration="1000">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <div class="flex flex-col">
+            <h3 class="text-2xl font-medium text-white mb-4">UpScale</h3>
+            <div class="space-y-2 text-sm">
+              <p class="text-gray-400">
+                Location: Jl. Ringroad Utara No 34 Maguwoharjo Yogyakarta, Indonesia
+              </p>
+              <p class="text-gray-400 space-x-2">
+                Phone:
+                <img src="https://upscale.id/template/upscale/media/id.png" alt="Indonesia" class="inline-block w-4 mr-1">
+                +62 87 888 666 531,
+                <img src="https://upscale.id/template/upscale/media/au.png" alt="Australia" class="inline-block w-4 mr-1">
+                +61 3 9010 6067
+              </p>
+              <p class="text-gray-400">
+                Email: dodi@upscale.id
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col md:items-end">
+            <h3 class="text-2xl font-medium text-white mb-4">For Talent</h3>
+            <div class="space-y-2 flex flex-col">
+              <a href="#" class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
+                Why Join as Talent?
+                <span
+                  class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+              </a>
+              <a href="#" class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
+                Job Opportunities
+                <span
+                  class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+              </a>
+              <a href="#" class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
+                Register as Talent
+                <span
+                  class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-8 pt-4 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © Upscale 2020. Member of PT Talenta Sinergi Group
+          </p>
+          <div class="flex items-center justify-center md:justify-start">
+            <img class="w-24" src="src/images/logo-transparent.png" alt="Logo">
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- Custom Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // =======================
+      // 🔹 Menu Toggle Script
+      // =======================
+      const navbar = document.getElementById('main-navbar');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isVisible = mobileMenu.classList.contains('translate-y-0');
+
+        if (isVisible) {
+          mobileMenu.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          mobileMenu.classList.add('translate-y-[-100%]', 'opacity-0', 'pointer-events-none');
+          document.body.style.overflow = 'auto';
+        } else {
+          mobileMenu.classList.remove('translate-y-[-100%]', 'opacity-0', 'pointer-events-none');
+          mobileMenu.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+
+      mobileMenu.addEventListener('click', (e) => e.stopPropagation());
+      document.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('translate-y-0')) {
+          mobileMenu.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          mobileMenu.classList.add('translate-y-[-100%]', 'opacity-0', 'pointer-events-none');
+          document.body.style.overflow = 'auto';
+        }
+      });
+
+      // ==========================
+      // 🔹 Atur padding atas hero agar tidak tertutup navbar
+      // ==========================
+      function adjustHeroPadding() {
+        const navbar = document.querySelector('nav');
+        const hero = document.querySelector('.content-overlay');
+        if (navbar && hero) {
+          const navbarHeight = navbar.offsetHeight;
+          hero.style.paddingTop = `${navbarHeight}px`;
+        }
+      }
+
+      window.addEventListener('load', adjustHeroPadding);
+      window.addEventListener('resize', adjustHeroPadding);
+
+      // ==========================
+      // 🔹 Ubah background navbar saat di-scroll
+      // ==========================
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          navbar?.classList.remove('bg-transparent');
+          navbar?.classList.add('bg-[#37517E]');
+        } else {
+          navbar?.classList.add('bg-transparent');
+          navbar?.classList.remove('bg-[#37517E]');
+        }
+      });
+
+      // ==========================
+      // 🔹 Fungsi untuk menganimasikan angka
+      // ==========================
+      const animateCount = (el, target, suffix = '') => {
+        let start = 0;
+        const duration = 2000;
+        const stepTime = Math.max(Math.floor(duration / target), 20);
+        const increment = Math.ceil(target / (duration / stepTime));
+
+        const counterInterval = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            el.textContent = `${target.toLocaleString()}${suffix}`;
+            clearInterval(counterInterval);
+          } else {
+            el.textContent = `${start.toLocaleString()}${suffix}`;
+          }
+        }, stepTime);
+      };
+
+      const counters = document.querySelectorAll(".count-up");
+      let hasAnimated = false;
+
+      const countUpObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasAnimated) {
+            counters.forEach(counter => {
+              const target = parseInt(counter.dataset.target);
+              const suffix = counter.dataset.suffix || "";
+              animateCount(counter, target, suffix);
+            });
+            hasAnimated = true;
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.6 });
+
+      counters.forEach(counter => countUpObserver.observe(counter));
+
+      // ==========================
+      // 🔹 Fungsi toggle accordion
+      // ==========================
+      const toggleAccordion = (button) => {
+        const contentId = button.getAttribute("aria-controls");
+        const iconId = button.id.replace("button", "icon");
+        const content = document.getElementById(contentId);
+        const icon = document.getElementById(iconId);
+        const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+        document.querySelectorAll('[id^="accordion-button-"]').forEach((otherBtn) => {
+          if (otherBtn !== button && otherBtn.getAttribute("aria-expanded") === "true") {
+            const otherContent = document.getElementById(otherBtn.getAttribute("aria-controls"));
+            const otherIcon = document.getElementById(otherBtn.id.replace("button", "icon"));
+            otherBtn.setAttribute("aria-expanded", "false");
+            otherContent?.classList.add("hidden");
+            otherIcon?.classList.remove("rotate-180");
+            otherBtn.classList.replace("bg-gray-50", "bg-white");
+            otherBtn.classList.add("hover:bg-gray-50");
+          }
+        });
+
+        button.setAttribute("aria-expanded", String(!isExpanded));
+        content?.classList.toggle("hidden");
+        icon?.classList.toggle("rotate-180");
+        button.classList.toggle("bg-gray-50", !isExpanded);
+        button.classList.toggle("bg-white", isExpanded);
+        button.classList.toggle("hover:bg-gray-50", isExpanded);
+      };
+
+      document.querySelectorAll('[id^="accordion-button-"]').forEach((button) => {
+        button.addEventListener("click", () => toggleAccordion(button));
+      });
+
+      // ==========================
+      // 🔹 Toggle Login Modal
+      // ==========================
+      function toggleLoginModal() {
+        const modal = document.getElementById('loginModal');
+        modal.classList.toggle('hidden');
+        document.body.classList.toggle('overflow-hidden');
+      }
+
+      const loginBtn = document.getElementById('login-btn');
+      const mobileLoginBtn = document.getElementById('mobile-login-btn');
+      const closeModalBtn = document.getElementById('login-modal-close'); // 👈 Tambahan baru
+
+      loginBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleLoginModal();
+      });
+
+      mobileLoginBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleLoginModal();
+      });
+
+      closeModalBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleLoginModal();
+      });
+
+      // ==========================
+      // 🔹 AOS Init
+      // ==========================
+      AOS.init();
+
+      // ==========================
+      // 🔹 Swiper Init
+      // ==========================
+      new Swiper('.partner-swiper', {
+        slidesPerView: 2,
+        spaceBetween: 20,
+        loop: true,
+        loopedSlides: 6,
+        watchOverflow: false,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
+        speed: 800,
+        breakpoints: {
+          640: { slidesPerView: 3 },
+          768: { slidesPerView: 4 },
+          1024: { slidesPerView: 4 },
+          1280: { slidesPerView: 5 },
+        },
+      });
+    });
+  </script>
+
+</body>
+</html>
