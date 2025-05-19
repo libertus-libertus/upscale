@@ -38,11 +38,11 @@
 
           <!-- Desktop Menu -->
           <div class="hidden lg:flex items-center space-x-4">
-            <a href="index.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Home</a>
+            <a href="index.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors active">Home</a>
             <a href="help-business.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Business</a>
             <a href="help-talent.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Talent</a>
-            <a href="jobs.html" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Jobs</a>
-            <a href="faq.html" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">F.A.Q</a>
+            <a href="jobs.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Jobs</a>
+            <a href="faq.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">F.A.Q</a>
 
             <!-- Language Dropdown -->
             <div class="relative dropdown px-3">
@@ -91,20 +91,20 @@
       <div id="mobile-menu"
         class="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white text-black overflow-y-auto transform transition-all duration-300 translate-y-[-100%] opacity-0 pointer-events-none">
         <div class="px-4 pt-4 pb-8 space-y-2">
-          <a href="index.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">Home</a>
+          <a href="index.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors active">Home</a>
           <a href="help-business.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Business</a>
           <a href="help-talent.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Talent</a>
-          <a href="jobs.html" class="block px-3 py-2 hover:text-cyan-500 transition-colors">Jobs</a>
-          <a href="faq.html" class="block px-3 py-2 hover:text-cyan-500 transition-colors">F.A.Q</a>
+          <a href="jobs.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">Jobs</a>
+          <a href="faq.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">F.A.Q</a>
 
           <!-- Language Selection -->
           <div class="flex items-center px-3 py-2 space-x-2">
-            <a href="https://upscale.id?lang=en" class="flex items-center hover:text-cyan-500 transition-colors">
+            <a href="#" class="flex items-center hover:text-cyan-500 transition-colors">
               <img src="https://upscale.id/template/upscale/media/en.png" alt="EN" class="w-5 h-3 mr-2" loading="lazy">
               English
             </a>
             <span class="text-gray-500">/</span>
-            <a href="https://upscale.id?lang=id" class="flex items-center hover:text-cyan-500 transition-colors">
+            <a href="#" class="flex items-center hover:text-cyan-500 transition-colors">
               <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-2" loading="lazy">
               Indonesia
             </a>
@@ -477,91 +477,97 @@
       </div>
     </section>
 
-    <!-- F.A.Q 1 -->
+    <!-- F.A.Q -->
     <section class="py-20 main-content bg-white">
       <div class="container max-w-[1140px] mx-auto px-4 sm:px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-[0.8fr_2.2fr] gap-8 items-start">
         <!-- Bagian kiri (accordion) -->
-        <div class="space-y-4 w-full" x-data="{ activeAccordion: null }" data-aos="fade-right" data-aos-duration="1000">
+        <div class="space-y-4 w-full" data-aos="fade-right" data-aos-duration="1000">
           <h2 class="text-2xl font-medium text-gray-900 mb-4">Recruitment Type <span class="text-cyan-500">.</span></h2>
           <p class="text-gray-800 text-sm leading-relaxed">Tentukan tipe recruitment anda. Pilihan fasilitas tidak
-            bersifat wajib, sehingga masih dapat disesuaikan kembali sesuai kebutuhan.</p>
+            bersifat wajib,
+            sehingga masih dapat disesuaikan kembali sesuai kebutuhan.</p>
 
-          <!-- Accordion Item 1 -->
-          <div class="pb-2">
-            <button @click="activeAccordion === 'item1' ? activeAccordion = null : activeAccordion = 'item1'"
-              class="flex items-start gap-3 w-full text-left">
-              <span
-                class="flex items-center justify-center w-6 h-6 bg-gray-700 text-white rounded-sm transition-transform duration-300"
-                :class="{ 'rotate-90': activeAccordion === 'item1' }">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+          <!-- Accordion 1 -->
+          <div class="overflow-hidden border border-gray-200 rounded-lg">
+            <button
+              class="flex items-center justify-between w-full px-3 py-2.5 text-gray-900 font-medium text-left focus:outline-none transition-colors duration-200 bg-white hover:bg-gray-50 text-sm"
+              id="accordion-button-1" aria-controls="accordion-content-1" aria-expanded="false">
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                  </path>
                 </svg>
-              </span>
-              <span class="text-sm font-medium text-gray-800">Dedicated Team / Freelance Team</span>
+                <span class="truncate">Dedicated Team / Freelance Team</span>
+              </div>
+              <svg id="accordion-icon-1"
+                class="w-4 h-4 text-gray-700 shrink-0 transform rotate-0 transition-transform duration-200" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
             </button>
-            <div x-show="activeAccordion === 'item1'" x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 transform -translate-y-2"
-              x-transition:enter-end="opacity-100 transform translate-y-0"
-              x-transition:leave="transition ease-in duration-200"
-              x-transition:leave-start="opacity-100 transform translate-y-0"
-              x-transition:leave-end="opacity-0 transform -translate-y-2"
-              class="mt-2 text-sm text-gray-600 pl-9">
-              Pencarian talent terbaik untuk kebutuhan bisnis Anda. Talent bersedia untuk bekerja on-site
-              maupun remote dan full-time maupun part-time.
+            <div id="accordion-content-1" class="px-3 pb-3 hidden" aria-labelledby="accordion-button-1">
+              <p class="text-gray-600 text-xs leading-relaxed">
+                Pencarian talent terbaik untuk kebutuhan bisnis Anda. Talent bersedia untuk bekerja on-site
+                maupun remote dan full-time maupun part-time.
+              </p>
             </div>
           </div>
 
-          <!-- Accordion Item 1 -->
-          <div class="pb-2">
-            <button @click="activeAccordion === 'item2' ? activeAccordion = null : activeAccordion = 'item2'"
-              class="flex items-start gap-3 w-full text-left">
-              <span
-                class="flex items-center justify-center w-6 h-6 bg-gray-700 text-white rounded-sm transition-transform duration-300"
-                :class="{ 'rotate-90': activeAccordion === 'item2' }">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+          <!-- Accordion 2 -->
+          <div class="overflow-hidden border border-gray-200 rounded-lg">
+            <button
+              class="flex items-center justify-between w-full px-3 py-2.5 text-gray-900 font-medium text-left focus:outline-none transition-colors duration-200 bg-white hover:bg-gray-50 text-sm"
+              id="accordion-button-2" aria-controls="accordion-content-2" aria-expanded="false">
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                  </path>
                 </svg>
-              </span>
-              <span class="text-sm font-medium text-gray-800">Head Hunter</span>
+                <span class="truncate">Head Hunter</span>
+              </div>
+              <svg id="accordion-icon-2"
+                class="w-4 h-4 text-gray-700 shrink-0 transform rotate-0 transition-transform duration-200" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
             </button>
-            <div x-show="activeAccordion === 'item2'" x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 transform -translate-y-2"
-              x-transition:enter-end="opacity-100 transform translate-y-0"
-              x-transition:leave="transition ease-in duration-200"
-              x-transition:leave-start="opacity-100 transform translate-y-0"
-              x-transition:leave-end="opacity-0 transform -translate-y-2"
-              class="mt-2 text-sm text-gray-600 pl-9">
-              Menyediakan fasilitas pencarian talent untuk dijadikan karyawan internal.
+            <div id="accordion-content-2" class="px-3 pb-3 hidden" aria-labelledby="accordion-button-2">
+              <p class="text-gray-600 text-xs leading-relaxed">
+                Layanan pencarian eksekutif untuk posisi-posisi strategis dalam perusahaan Anda.
+              </p>
             </div>
           </div>
 
-          <!-- Accordion Item 1 -->
-          <div class="pb-2">
-            <button @click="activeAccordion === 'item3' ? activeAccordion = null : activeAccordion = 'item3'"
-              class="flex items-start gap-3 w-full text-left">
-              <span
-                class="flex items-center justify-center w-6 h-6 bg-gray-700 text-white rounded-sm transition-transform duration-300"
-                :class="{ 'rotate-90': activeAccordion === 'item3' }">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
-                  stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+          <!-- Accordion 3 -->
+          <div class="overflow-hidden border border-gray-200 rounded-lg">
+            <button
+              class="flex items-center justify-between w-full px-3 py-2.5 text-gray-900 font-medium text-left focus:outline-none transition-colors duration-200 bg-white hover:bg-gray-50 text-sm"
+              id="accordion-button-3" aria-controls="accordion-content-3" aria-expanded="false">
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                  </path>
                 </svg>
-              </span>
-              <span class="text-sm font-medium text-gray-800">Project-Based</span>
+                <span class="truncate">Project-Based</span>
+              </div>
+              <svg id="accordion-icon-3"
+                class="w-4 h-4 text-gray-700 shrink-0 transform rotate-0 transition-transform duration-200" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
             </button>
-            <div x-show="activeAccordion === 'item3'" x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 transform -translate-y-2"
-              x-transition:enter-end="opacity-100 transform translate-y-0"
-              x-transition:leave="transition ease-in duration-200"
-              x-transition:leave-start="opacity-100 transform translate-y-0"
-              x-transition:leave-end="opacity-0 transform -translate-y-2"
-              class="mt-2 text-sm text-gray-600 pl-9">
-              Menyediakan fasilitas pencarian vendor untuk menjadi sub-contractor project Anda.
+            <div id="accordion-content-3" class="px-3 pb-3 hidden" aria-labelledby="accordion-button-3">
+              <p class="text-gray-600 text-xs leading-relaxed">
+                Penyediaan tim profesional untuk menyelesaikan proyek khusus dengan durasi tertentu.
+              </p>
             </div>
           </div>
-
         </div>
 
         <!-- Bagian kanan (tabel) -->
@@ -748,7 +754,6 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <!-- Custom Script -->
   <script src="src/js/data.js"></script>
   <script>

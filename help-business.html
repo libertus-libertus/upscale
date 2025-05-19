@@ -17,44 +17,7 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
   />
-  <style type="text/tailwindcss">
-    @layer base {
-      html {
-        font-family: 'Jost', sans-serif;
-        scroll-behavior: smooth;
-        -webkit-tap-highlight-color: transparent;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-      }
-      .dropdown:hover .dropdown-menu {
-        display: flex;
-      }
-      .video-container {
-        position: relative;
-        height: 100vh;
-        overflow: hidden;
-      }
-      .video-container video {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-      .content-overlay {
-        position: relative;
-        z-index: 10;
-        height: 100%;
-      }
-      .partner-swiper .swiper-slide {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body class="bg-black text-white">
@@ -75,11 +38,11 @@
 
           <!-- Desktop Menu -->
           <div class="hidden lg:flex items-center space-x-4">
-            <a href="index.html" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Home</a>
-            <a href="help-business.html" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Business</a>
-            <a href="help-talent.html" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Talent</a>
-            <a href="#" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Jobs</a>
-            <a href="#" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">F.A.Q</a>
+            <a href="index.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors active">Home</a>
+            <a href="help-business.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Business</a>
+            <a href="help-talent.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Talent</a>
+            <a href="jobs.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Jobs</a>
+            <a href="faq.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">F.A.Q</a>
 
             <!-- Language Dropdown -->
             <div class="relative dropdown px-3">
@@ -101,7 +64,6 @@
                   EN
                 </a>
               </div>
-              
             </div>
 
             <div class="h-4 border-l border-gray-600 mx-2"></div>
@@ -129,20 +91,20 @@
       <div id="mobile-menu"
         class="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white text-black overflow-y-auto transform transition-all duration-300 translate-y-[-100%] opacity-0 pointer-events-none">
         <div class="px-4 pt-4 pb-8 space-y-2">
-          <a href="index.html" class="block px-3 py-2 hover:text-cyan-500 transition-colors">Home</a>
-          <a href="help-business.html" class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Business</a>
-          <a href="help-talent.html" class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Talent</a>
-          <a href="#" class="block px-3 py-2 hover:text-cyan-500 transition-colors">Jobs</a>
-          <a href="#" class="block px-3 py-2 hover:text-cyan-500 transition-colors">F.A.Q</a>
+          <a href="index.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors active">Home</a>
+          <a href="help-business.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Business</a>
+          <a href="help-talent.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Talent</a>
+          <a href="jobs.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">Jobs</a>
+          <a href="faq.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">F.A.Q</a>
 
           <!-- Language Selection -->
           <div class="flex items-center px-3 py-2 space-x-2">
-            <a href="https://upscale.id?lang=en" class="flex items-center hover:text-cyan-500 transition-colors">
+            <a href="#" class="flex items-center hover:text-cyan-500 transition-colors">
               <img src="https://upscale.id/template/upscale/media/en.png" alt="EN" class="w-5 h-3 mr-2" loading="lazy">
               English
             </a>
             <span class="text-gray-500">/</span>
-            <a href="https://upscale.id?lang=id" class="flex items-center hover:text-cyan-500 transition-colors">
+            <a href="#" class="flex items-center hover:text-cyan-500 transition-colors">
               <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-2" loading="lazy">
               Indonesia
             </a>
@@ -464,194 +426,19 @@
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <!-- Custom Script -->
+  <script src="src/js/data.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      // =======================
-      // 🔹 Menu Toggle Script
-      // =======================
-      const navbar = document.getElementById('main-navbar');
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
+    const links = document.querySelectorAll('[data-link]');
+    const currentPath = window.location.pathname.split("/").pop(); // Get current file name (e.g., "faq.html")
 
-      mobileMenuButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isVisible = mobileMenu.classList.contains('translate-y-0');
+    links.forEach(link => {
+      const linkPath = link.getAttribute("href");
 
-        if (isVisible) {
-          mobileMenu.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-          mobileMenu.classList.add('translate-y-[-100%]', 'opacity-0', 'pointer-events-none');
-          document.body.style.overflow = 'auto';
-        } else {
-          mobileMenu.classList.remove('translate-y-[-100%]', 'opacity-0', 'pointer-events-none');
-          mobileMenu.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
-          document.body.style.overflow = 'hidden';
-        }
-      });
-
-      mobileMenu.addEventListener('click', (e) => e.stopPropagation());
-      document.addEventListener('click', () => {
-        if (mobileMenu.classList.contains('translate-y-0')) {
-          mobileMenu.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-          mobileMenu.classList.add('translate-y-[-100%]', 'opacity-0', 'pointer-events-none');
-          document.body.style.overflow = 'auto';
-        }
-      });
-
-      // ==========================
-      // 🔹 Atur padding atas hero agar tidak tertutup navbar
-      // ==========================
-      function adjustHeroPadding() {
-        const navbar = document.querySelector('nav');
-        const hero = document.querySelector('.content-overlay');
-        if (navbar && hero) {
-          const navbarHeight = navbar.offsetHeight;
-          hero.style.paddingTop = `${navbarHeight}px`;
-        }
+      if (linkPath === currentPath || (linkPath === "index.html" && currentPath === "")) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
       }
-
-      window.addEventListener('load', adjustHeroPadding);
-      window.addEventListener('resize', adjustHeroPadding);
-
-      // ==========================
-      // 🔹 Ubah background navbar saat di-scroll
-      // ==========================
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-          navbar?.classList.remove('bg-transparent');
-          navbar?.classList.add('bg-[#37517E]');
-        } else {
-          navbar?.classList.add('bg-transparent');
-          navbar?.classList.remove('bg-[#37517E]');
-        }
-      });
-
-      // ==========================
-      // 🔹 Fungsi untuk menganimasikan angka
-      // ==========================
-      const animateCount = (el, target, suffix = '') => {
-        let start = 0;
-        const duration = 2000;
-        const stepTime = Math.max(Math.floor(duration / target), 20);
-        const increment = Math.ceil(target / (duration / stepTime));
-
-        const counterInterval = setInterval(() => {
-          start += increment;
-          if (start >= target) {
-            el.textContent = `${target.toLocaleString()}${suffix}`;
-            clearInterval(counterInterval);
-          } else {
-            el.textContent = `${start.toLocaleString()}${suffix}`;
-          }
-        }, stepTime);
-      };
-
-      const counters = document.querySelectorAll(".count-up");
-      let hasAnimated = false;
-
-      const countUpObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !hasAnimated) {
-            counters.forEach(counter => {
-              const target = parseInt(counter.dataset.target);
-              const suffix = counter.dataset.suffix || "";
-              animateCount(counter, target, suffix);
-            });
-            hasAnimated = true;
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.6 });
-
-      counters.forEach(counter => countUpObserver.observe(counter));
-
-      // ==========================
-      // 🔹 Fungsi toggle accordion
-      // ==========================
-      const toggleAccordion = (button) => {
-        const contentId = button.getAttribute("aria-controls");
-        const iconId = button.id.replace("button", "icon");
-        const content = document.getElementById(contentId);
-        const icon = document.getElementById(iconId);
-        const isExpanded = button.getAttribute("aria-expanded") === "true";
-
-        document.querySelectorAll('[id^="accordion-button-"]').forEach((otherBtn) => {
-          if (otherBtn !== button && otherBtn.getAttribute("aria-expanded") === "true") {
-            const otherContent = document.getElementById(otherBtn.getAttribute("aria-controls"));
-            const otherIcon = document.getElementById(otherBtn.id.replace("button", "icon"));
-            otherBtn.setAttribute("aria-expanded", "false");
-            otherContent?.classList.add("hidden");
-            otherIcon?.classList.remove("rotate-180");
-            otherBtn.classList.replace("bg-gray-50", "bg-white");
-            otherBtn.classList.add("hover:bg-gray-50");
-          }
-        });
-
-        button.setAttribute("aria-expanded", String(!isExpanded));
-        content?.classList.toggle("hidden");
-        icon?.classList.toggle("rotate-180");
-        button.classList.toggle("bg-gray-50", !isExpanded);
-        button.classList.toggle("bg-white", isExpanded);
-        button.classList.toggle("hover:bg-gray-50", isExpanded);
-      };
-
-      document.querySelectorAll('[id^="accordion-button-"]').forEach((button) => {
-        button.addEventListener("click", () => toggleAccordion(button));
-      });
-
-      // ==========================
-      // 🔹 Toggle Login Modal
-      // ==========================
-      function toggleLoginModal() {
-        const modal = document.getElementById('loginModal');
-        modal.classList.toggle('hidden');
-        document.body.classList.toggle('overflow-hidden');
-      }
-
-      const loginBtn = document.getElementById('login-btn');
-      const mobileLoginBtn = document.getElementById('mobile-login-btn');
-      const closeModalBtn = document.getElementById('login-modal-close'); // 👈 Tambahan baru
-
-      loginBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleLoginModal();
-      });
-
-      mobileLoginBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleLoginModal();
-      });
-
-      closeModalBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleLoginModal();
-      });
-
-      // ==========================
-      // 🔹 AOS Init
-      // ==========================
-      AOS.init();
-
-      // ==========================
-      // 🔹 Swiper Init
-      // ==========================
-      new Swiper('.partner-swiper', {
-        slidesPerView: 2,
-        spaceBetween: 20,
-        loop: true,
-        loopedSlides: 6,
-        watchOverflow: false,
-        autoplay: {
-          delay: 2000,
-          disableOnInteraction: false,
-        },
-        speed: 800,
-        breakpoints: {
-          640: { slidesPerView: 3 },
-          768: { slidesPerView: 4 },
-          1024: { slidesPerView: 4 },
-          1280: { slidesPerView: 5 },
-        },
-      });
     });
   </script>
 
