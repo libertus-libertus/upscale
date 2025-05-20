@@ -2,370 +2,544 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upscale.id, Scaling Up your business with right talent</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <!-- Favicon -->
-  <link rel="icon" href="https://upscale.id/template/upscale/media/upscale.ico" />
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="src/css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upscale.id, Scaling Up your business with right talent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="https://upscale.id/template/upscale/media/upscale.ico" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="src/css/style.css">
+    <style>
+        /* Style untuk ikon chat di kanan bawah */
+        .live-chat-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #37517E;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 50; /* Pastikan di atas navbar */
+        }
+
+        .live-chat-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Style untuk kotak live chat */
+        #liveChatBox {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: white;
+            color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 51; /* Di atas ikon chat */
+            width: 300px;
+            padding: 20px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid #ddd;
+        }
+
+        #liveChatBox.active {
+            display: flex;
+        }
+
+        .live-chat-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #37517E;
+        }
+
+        .live-chat-info {
+            background-color: #f0f8ff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .live-chat-info a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .live-chat-info a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: #37517E;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #274064;
+        }
+    </style>
 </head>
 
 <body class="bg-black text-white">
-  <!-- Navbar -->
-  <header>
-    <nav id="main-navbar" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300 bg-[#37517E]">
-      <!-- <nav class="absolute top-0 left-0 w-full z-50 bg-transparent"> -->
-      <div class="container mx-auto px-4 sm:px-6 lg:px-28">
-        <div class="flex justify-between items-center h-16">
-          <!-- Logo -->
-          <div class="flex-shrink-0">
-            <a href="index.html">
-              <img class="h-8" src="https://upscale.id/template/upscale/media/logo-transparent.png" alt="Upscale.id"
-                loading="lazy" />
-            </a>
-          </div>
+    <header>
+        <nav id="main-navbar" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300 bg-[#37517E]">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-28">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex-shrink-0">
+                        <a href="index.html">
+                            <img class="h-8" src="https://upscale.id/template/upscale/media/logo-transparent.png"
+                                alt="Upscale.id" loading="lazy" />
+                        </a>
+                    </div>
 
-          <!-- Desktop Menu -->
-          <div class="hidden lg:flex items-center space-x-4">
-            <a href="index.html" data-link
-              class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors active">Home</a>
-            <a href="help-business.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For
-              Business</a>
-            <a href="help-talent.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For
-              Talent</a>
-            <a href="jobs.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Jobs</a>
-            <a href="faq.html" data-link class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">F.A.Q</a>
+                    <div class="hidden lg:flex items-center space-x-4">
+                        <a href="index.html" data-link
+                            class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors active">Home</a>
+                        <a href="help-business.html" data-link
+                            class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Business</a>
+                        <a href="help-talent.html" data-link
+                            class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">For Talent</a>
+                        <a href="jobs.html" data-link
+                            class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">Jobs</a>
+                        <a href="faq.html" data-link
+                            class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">F.A.Q</a>
 
-            <!-- Language Dropdown -->
-            <div class="relative dropdown px-3">
-              <button class="flex items-center text-sm font-medium hover:text-cyan-500 transition-colors">
-                <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-2"
-                  loading="lazy" />
-                ID
-              </button>
-              <div
-                class="dropdown-menu hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10 flex-col py-1">
-                <a href="#" class="flex items-center px-4 py-2 text-gray-700">
-                  <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-1"
-                    loading="lazy" />
-                  ID
-                </a>
-                <a href="#" class="flex items-center px-4 py-2 text-gray-700">
-                  <img src="https://upscale.id/template/upscale/media/en.png" alt="EN" class="w-5 h-3 mr-1"
-                    loading="lazy" />
-                  EN
-                </a>
-              </div>
+                        <div class="relative dropdown px-3">
+                            <button class="flex items-center text-sm font-medium hover:text-cyan-500 transition-colors">
+                                <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-2"
+                                    loading="lazy" />
+                                ID
+                            </button>
+                            <div
+                                class="dropdown-menu hidden absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg z-10 flex-col py-1">
+                                <a href="#" class="flex items-center px-4 py-2 text-gray-700">
+                                    <img src="https://upscale.id/template/upscale/media/id.png" alt="ID"
+                                        class="w-5 h-3 mr-1" loading="lazy" />
+                                    ID
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-gray-700">
+                                    <img src="https://upscale.id/template/upscale/media/en.png" alt="EN"
+                                        class="w-5 h-3 mr-1" loading="lazy" />
+                                    EN
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="h-4 border-l border-gray-600 mx-2"></div>
+
+                        <button id="login-btn"
+                            class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">
+                            Login
+                        </button>
+                        <button id="openChatNavbar"
+                            class="border border-white text-white rounded-full px-4 py-1 hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-colors ml-2 text-sm font-medium">
+                            Live Chat
+                        </button>
+                    </div>
+
+                    <div class="lg:hidden">
+                        <button id="mobile-menu-button"
+                            class="p-2 hover:text-cyan-500 focus:outline-none transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <div class="h-4 border-l border-gray-600 mx-2"></div>
+            <div id="mobile-menu"
+                class="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white text-black overflow-y-auto transform transition-all duration-300 translate-y-[-100%] opacity-0 pointer-events-none">
+                <div class="px-4 pt-4 pb-8 space-y-2">
+                    <a href="index.html" data-link
+                        class="block px-3 py-2 hover:text-cyan-500 transition-colors active">Home</a>
+                    <a href="help-business.html" data-link
+                        class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Business</a>
+                    <a href="help-talent.html" data-link
+                        class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Talent</a>
+                    <a href="jobs.html" data-link
+                        class="block px-3 py-2 hover:text-cyan-500 transition-colors">Jobs</a>
+                    <a href="faq.html" data-link
+                        class="block px-3 py-2 hover:text-cyan-500 transition-colors">F.A.Q</a>
 
-            <!-- Auth Buttons -->
-            <button id="login-btn" class="px-3 py-2 text-sm font-medium hover:text-cyan-500 transition-colors">
-              Login
+                    <div class="flex items-center px-3 py-2 space-x-2">
+                        <a href="#" class="flex items-center hover:text-cyan-500 transition-colors">
+                            <img src="https://upscale.id/template/upscale/media/en.png" alt="EN" class="w-5 h-3 mr-2"
+                                loading="lazy" />
+                            English
+                        </a>
+                        <span class="text-gray-500">/</span>
+                        <a href="#" class="flex items-center hover:text-cyan-500 transition-colors">
+                            <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-2"
+                                loading="lazy" />
+                            Indonesia
+                        </a>
+                    </div>
+
+                    <div class="border-t border-gray-300 pt-2 mt-2">
+                        <button id="mobile-login-btn"
+                            class="block w-full text-left px-3 py-2 hover:text-cyan-500 transition-colors">
+                            Login
+                        </button>
+                        <button id="openChatMobile"
+                            class="block w-full text-left px-3 py-2 mt-2 text-white bg-cyan-500 hover:bg-cyan-600 rounded transition-colors">
+                            Live Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="loginModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-8 relative">
+            <button id="login-modal-close"
+                class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl leading-none">
+                &times;
             </button>
-            <a href="#"
-              class="border border-white text-white rounded-full px-4 py-1 hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition-colors ml-2 text-sm font-medium">
-              Live Chat
-            </a>
-          </div>
-
-          <!-- Mobile menu button -->
-          <div class="lg:hidden">
-            <button id="mobile-menu-button" class="p-2 hover:text-cyan-500 focus:outline-none transition-colors">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                Login Dashboard
+            </h2>
+            <form class="space-y-5">
+                <div>
+                    <label class="block text-sm text-gray-700">Email</label>
+                    <input type="email" placeholder="Type your email"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-700">Password</label>
+                    <input type="password" placeholder="Type your password"
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" />
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">Belum punya akun?
+                        <a href="#" class="text-sm text-cyan-600 hover:underline">
+                            Click</a></span>
+                    <a href="#" class="text-sm text-cyan-500 hover:underline float-right mt-1">Forgot password</a>
+                </div>
+                <div class="flex justify-between gap-4 mt-6">
+                    <button type="button" class="w-1/2 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg">
+                        Reset Password
+                    </button>
+                    <button type="submit" class="w-1/2 bg-cyan-500 hover:bg-cyan-600 text-white py-2 rounded-lg">
+                        Login
+                    </button>
+                </div>
+            </form>
         </div>
-      </div>
-
-      <!-- Mobile Menu with smooth transition -->
-      <div id="mobile-menu"
-        class="lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white text-black overflow-y-auto transform transition-all duration-300 translate-y-[-100%] opacity-0 pointer-events-none">
-        <div class="px-4 pt-4 pb-8 space-y-2">
-          <a href="index.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors active">Home</a>
-          <a href="help-business.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Business</a>
-          <a href="help-talent.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">For Talent</a>
-          <a href="jobs.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">Jobs</a>
-          <a href="faq.html" data-link class="block px-3 py-2 hover:text-cyan-500 transition-colors">F.A.Q</a>
-
-          <!-- Language Selection -->
-          <div class="flex items-center px-3 py-2 space-x-2">
-            <a href="#" class="flex items-center hover:text-cyan-500 transition-colors">
-              <img src="https://upscale.id/template/upscale/media/en.png" alt="EN" class="w-5 h-3 mr-2"
-                loading="lazy" />
-              English
-            </a>
-            <span class="text-gray-500">/</span>
-            <a href="#" class="flex items-center hover:text-cyan-500 transition-colors">
-              <img src="https://upscale.id/template/upscale/media/id.png" alt="ID" class="w-5 h-3 mr-2"
-                loading="lazy" />
-              Indonesia
-            </a>
-          </div>
-
-          <div class="border-t border-gray-300 pt-2 mt-2">
-            <button id="mobile-login-btn"
-              class="block w-full text-left px-3 py-2 hover:text-cyan-500 transition-colors">
-              Login
-            </button>
-            <a href="#"
-              class="block w-full text-left px-3 py-2 mt-2 text-white bg-cyan-500 hover:bg-cyan-600 rounded transition-colors">
-              Live Chat
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Login Modal -->
-  <div id="loginModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-white rounded-xl shadow-xl w-full max-w-md p-8 relative">
-      <!-- <button onclick="toggleLoginModal()" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl leading-none">&times;</button> -->
-      <button id="login-modal-close"
-        class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl leading-none">
-        &times;
-      </button>
-      <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
-        Login Dashboard
-      </h2>
-      <form class="space-y-5">
-        <div>
-          <label class="block text-sm text-gray-700">Email</label>
-          <input type="email" placeholder="Type your email"
-            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" />
-        </div>
-        <div>
-          <label class="block text-sm text-gray-700">Password</label>
-          <input type="password" placeholder="Type your password"
-            class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" />
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-gray-600">Belum punya akun?
-            <a href="#" class="text-sm text-cyan-600 hover:underline">
-              Click</a></span>
-          <a href="#" class="text-sm text-cyan-500 hover:underline float-right mt-1">Forgot password</a>
-        </div>
-        <div class="flex justify-between gap-4 mt-6">
-          <button type="button" class="w-1/2 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg">
-            Reset Password
-          </button>
-          <button type="submit" class="w-1/2 bg-cyan-500 hover:bg-cyan-600 text-white py-2 rounded-lg">
-            Login
-          </button>
-        </div>
-      </form>
     </div>
-  </div>
 
-  <main>
-    <!-- Hero Section - Job Expertise -->
-    <section class="bg-white py-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
-      <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-28">
-        <div class="text-center mb-12 px-4">
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-            Join Now , choose your Expertise !
-          </h2>
-          <p class="text-gray-600 text-base sm:text-lg">
-            Bergabung dengan eksklusif network kami. Kembangkan Karir, Skill &
-            Network kamu <br />
-            bersama Upscale. Kami secara aktif akan mencarikan kamu peluang
-            yang lebih baik
-          </p>
+    <main>
+        <section class="bg-white py-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+            <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-28">
+                <div class="text-center mb-12 px-4">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        Join Now , choose your Expertise !
+                    </h2>
+                    <p class="text-gray-600 text-base sm:text-lg">
+                        Bergabung dengan eksklusif network kami. Kembangkan Karir, Skill &amp;
+                        Network kamu <br />
+                        bersama Upscale. Kami secara aktif akan mencarikan kamu peluang
+                        yang lebih baik
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden divide-y divide-gray-200">
+                    <div
+                        class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
+                            <h3 class="font-semibold text-gray-700 text-md">
+                                3. Backend Engineer (GO)
+                            </h3>
+                            <p class="text-sm text-gray-500">
+                                Min 1 Year - Fulltime/Partime, Remote/Onsite
+                            </p>
+                            <span
+                                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
+                        </div>
+                        <button
+                            class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
+                            JOIN
+                        </button>
+                    </div>
+
+                    <div
+                        class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
+                            <h3 class="font-semibold text-gray-700 text-md">
+                                Fullstack Programmer
+                            </h3>
+                            <p class="text-sm text-gray-500">
+                                Yogyakarta - Min 2 Years - Fulltime/Partime, Remote/Onsite
+                            </p>
+                            <span
+                                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
+                        </div>
+                        <button
+                            class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
+                            JOIN
+                        </button>
+                    </div>
+
+                    <div
+                        class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
+                            <h3 class="font-semibold text-gray-700 text-md">HR Senior</h3>
+                            <p class="text-sm text-gray-500">
+                                Jakarta - Min 3 Years - Fulltime Onsite Only
+                            </p>
+                            <span
+                                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
+                        </div>
+                        <button
+                            class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
+                            JOIN
+                        </button>
+                    </div>
+
+                    <div
+                        class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
+                            <h3 class="font-semibold text-gray-700 text-md">
+                                IT Product Manager
+                            </h3>
+                            <p class="text-sm text-gray-500">
+                                Yogyakarta - Min 2 Years - Fulltime/Partime, Remote/Onsite
+                            </p>
+                            <span
+                                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
+                        </div>
+                        <button
+                            class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
+                            JOIN
+                        </button>
+                    </div>
+
+                    <div
+                        class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
+                            <h3 class="font-semibold text-gray-700 text-md">QA Engineer</h3>
+                            <p class="text-sm text-gray-500">
+                                Yogyakarta - Min 2 Years - Fulltime/Partime, Remote/Onsite
+                            </p>
+                            <span
+                                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
+                        </div>
+                        <button
+                            class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
+                            JOIN
+                        </button>
+                    </div>
+
+                    <div
+                        class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
+                            <h3 class="font-semibold text-gray-700 text-md">
+                                UI/UX Designer
+                            </h3>
+                            <p class="text-sm text-gray-500">
+                                Yogyakarta - Min 2 Years - Fulltime/Partime, Remote/Onsite
+                            </p>
+                            <span
+                                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
+                        </div>
+                        <button
+                            class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
+                            JOIN
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-[#37517E] py-8 md:py-8">
+            <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-28" data-aos="fade-down"
+                data-aos-duration="1000">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div class="flex flex-col">
+                        <h3 class="text-2xl font-medium text-white mb-4">UpScale</h3>
+                        <div class="space-y-2 text-sm">
+                            <p class="text-gray-400">
+                                Location: Jl. Ringroad Utara No 34 Maguwoharjo Yogyakarta,
+                                Indonesia
+                            </p>
+                            <p class="text-gray-400 space-x-2">
+                                Phone:
+                                <img src="https://upscale.id/template/upscale/media/id.png" alt="Indonesia"
+                                    class="inline-block w-4 mr-1" />
+                                +62 87 888 666 531,
+                                <img src="https://upscale.id/template/upscale/media/au.png" alt="Australia"
+                                    class="inline-block w-4 mr-1" />
+                                +61 3 9010 6067
+                            </p>
+                            <p class="text-gray-400">Email: dodi@upscale.id</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:items-end">
+                        <h3 class="text-2xl font-medium text-white mb-4">For Talent</h3>
+                        <div class="space-y-2 flex flex-col">
+                            <a href="#"
+                                class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
+                                Why Join as Talent?
+                                <span
+                                    class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                            </a>
+                            <a href="#"
+                                class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
+                                Job Opportunities
+                                <span
+                                    class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                            </a>
+                            <a href="#"
+                                class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
+                                Register as Talent
+                                <span
+                                    class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="mt-8 pt-4 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © Upscale 2020. Member of PT Talenta Sinergi Group
+                    </p>
+                    <div class="flex items-center justify-center md:justify-start">
+                        <img class="w-24" src="src/images/logo-transparent.png" alt="Logo" />
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <div id="openChatIcon" class="live-chat-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd" d="M4.804 21.644A6.75 6.75 0 016 21.75h6a6.75 6.75 0 016-6.75V4.052a8.25 8.25 0 00-8.25-8.25A8.25 8.25 0 00-2.25 4.052v10.948c0 1.494.597 2.881 1.644 3.928A6.75 6.75 0 014.804 21.644zM12 22.5V15a.75.75 0 01.75-.75h7.5a.75.75 0 01.75.75v7.5a.75.75 0 01-.75.75h-7.5A.75.75 0 0112 22.5z" clip-rule="evenodd" />
+        </svg>
+    </div>
+
+    <div id="liveChatBox" class="live-chat-box">
+        <div class="live-chat-header">For Fast Response please contact us from Whatsapp <a
+                href="https://wa.me/6287888666531" target="_blank" class="font-bold">087-888-666-531 Click
+                Here</a></div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required
+                class="shadow-sm focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border-gray-300 rounded-md" />
         </div>
-
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden divide-y divide-gray-200">
-          <!-- List Item Start -->
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
-              <h3 class="font-semibold text-gray-700 text-md">
-                3. Backend Engineer (GO)
-              </h3>
-              <p class="text-sm text-gray-500">
-                Min 1 Year - Fulltime/Partime, Remote/Onsite
-              </p>
-              <span
-                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
-            </div>
-            <button
-              class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-              JOIN
-            </button>
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
-              <h3 class="font-semibold text-gray-700 text-md">
-                Fullstack Programmer
-              </h3>
-              <p class="text-sm text-gray-500">
-                Yogyakarta - Min 2 Years - Fulltime/Partime, Remote/Onsite
-              </p>
-              <span
-                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
-            </div>
-            <button
-              class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-              JOIN
-            </button>
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
-              <h3 class="font-semibold text-gray-700 text-md">HR Senior</h3>
-              <p class="text-sm text-gray-500">
-                Jakarta - Min 3 Years - Fulltime Onsite Only
-              </p>
-              <span
-                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
-            </div>
-            <button
-              class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-              JOIN
-            </button>
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
-              <h3 class="font-semibold text-gray-700 text-md">
-                IT Product Manager
-              </h3>
-              <p class="text-sm text-gray-500">
-                Yogyakarta - Min 2 Years - Fulltime/Partime, Remote/Onsite
-              </p>
-              <span
-                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
-            </div>
-            <button
-              class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-              JOIN
-            </button>
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
-              <h3 class="font-semibold text-gray-700 text-md">QA Engineer</h3>
-              <p class="text-sm text-gray-500">
-                Yogyakarta - Min 2 Years - Fulltime/Partime, Remote/Onsite
-              </p>
-              <span
-                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
-            </div>
-            <button
-              class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-              JOIN
-            </button>
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-6 py-4 gap-y-2">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-gray-800">
-              <h3 class="font-semibold text-gray-700 text-md">
-                UI/UX Designer
-              </h3>
-              <p class="text-sm text-gray-500">
-                Yogyakarta - Min 2 Years - Fulltime/Partime, Remote/Onsite
-              </p>
-              <span
-                class="ml-0 sm:ml-2 mt-1 sm:mt-0 w-fit bg-red-300 text-white text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap">Urgent</span>
-            </div>
-            <button
-              class="w-full sm:w-auto bg-cyan-500 text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-              JOIN
-            </button>
-          </div>
-          <!-- List Item End -->
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required
+                class="shadow-sm focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border-gray-300 rounded-md" />
         </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#37517E] py-8 md:py-8">
-      <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-28" data-aos="fade-down" data-aos-duration="1000">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-          <div class="flex flex-col">
-            <h3 class="text-2xl font-medium text-white mb-4">UpScale</h3>
-            <div class="space-y-2 text-sm">
-              <p class="text-gray-400">
-                Location: Jl. Ringroad Utara No 34 Maguwoharjo Yogyakarta,
-                Indonesia
-              </p>
-              <p class="text-gray-400 space-x-2">
-                Phone:
-                <img src="https://upscale.id/template/upscale/media/id.png" alt="Indonesia"
-                  class="inline-block w-4 mr-1" />
-                +62 87 888 666 531,
-                <img src="https://upscale.id/template/upscale/media/au.png" alt="Australia"
-                  class="inline-block w-4 mr-1" />
-                +61 3 9010 6067
-              </p>
-              <p class="text-gray-400">Email: dodi@upscale.id</p>
-            </div>
-          </div>
-          <div class="flex flex-col md:items-end">
-            <h3 class="text-2xl font-medium text-white mb-4">For Talent</h3>
-            <div class="space-y-2 flex flex-col">
-              <a href="#" class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
-                Why Join as Talent?
-                <span
-                  class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </a>
-              <a href="#" class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
-                Job Opportunities
-                <span
-                  class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </a>
-              <a href="#" class="text-gray-400 text-sm hover:text-white transition-all duration-300 relative group">
-                Register as Talent
-                <span
-                  class="absolute bottom-0 left-0 w-full h-0.5 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </a>
-            </div>
-          </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required
+                class="shadow-sm focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border-gray-300 rounded-md" />
         </div>
-        <div
-          class="mt-8 pt-4 border-t border-gray-700 flex flex-col md:flex-row items-center justify-between text-center md:text-left">
-          <p class="text-gray-400 text-sm mb-4 md:mb-0">
-            © Upscale 2020. Member of PT Talenta Sinergi Group
-          </p>
-          <div class="flex items-center justify-center md:justify-start">
-            <img class="w-24" src="src/images/logo-transparent.png" alt="Logo" />
-          </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required
+                class="shadow-sm focus:ring-cyan-500 focus:border-cyan-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
         </div>
-      </div>
-    </footer>
-  </main>
+        <button type="submit" class="submit-button bg-[#37517E] hover:bg-[#274064] text-white font-medium rounded-md">
+            Submit
+        </button>
+    </div>
 
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-  <!-- Custom Script -->
-  <script src="src/js/script.js"></script>
-  <script>
-    const links = document.querySelectorAll('[data-link]');
-    const currentPath = window.location.pathname.split("/").pop(); // Get current file name (e.g., "faq.html")
+    <script>
+        const openChatNavbarButton = document.getElementById('openChatNavbar');
+        const openChatMobileButton = document.getElementById('openChatMobile');
+        const openChatIconButton = document.getElementById('openChatIcon');
+        const liveChatBox = document.getElementById('liveChatBox');
 
-    links.forEach(link => {
-      const linkPath = link.getAttribute("href");
+        function toggleChatBox() {
+            liveChatBox.classList.toggle('active');
+        }
 
-      if (linkPath === currentPath || (linkPath === "index.html" && currentPath === "")) {
-        link.classList.add("active");
-      } else {
-        link.classList.remove("active");
-      }
-    });
-  </script>
+        if (openChatNavbarButton) {
+            openChatNavbarButton.addEventListener('click', toggleChatBox);
+        }
+
+        if (openChatMobileButton) {
+            openChatMobileButton.addEventListener('click', toggleChatBox);
+        }
+
+        if (openChatIconButton) {
+            openChatIconButton.addEventListener('click', toggleChatBox);
+        }
+
+        document.addEventListener('click', function (event) {
+            if (!liveChatBox.contains(event.target) && event.target !== openChatNavbarButton && event.target !== openChatMobileButton && event.target !== openChatIconButton) {
+                liveChatBox.classList.remove('active');
+            }
+        });
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="src/js/script.js"></script>
+    <script>
+        const links = document.querySelectorAll('[data-link]');
+        const currentPath = window.location.pathname.split("/").pop();
+
+        links.forEach(link => {
+            const linkPath = link.getAttribute("href");
+
+            if (linkPath === currentPath || (linkPath === "index.html" && currentPath === "")) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    </script>
 
 </body>
 
